@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs/
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRkb25hZ2h0IiwiaWQiOiI1ZjMwOGEwMmUwNmY1MThkOGFlOTE2ZDkiLCJpYXQiOjE1OTcwMTY2MTl9.R7AklUNX3dK9oT4Oy997ASnCvR_npEbNRFtvlfOC76A
+
+{
+    "title": "Top 10 ways to evade the crip walkers",
+    "url": "http://www.youtube.com/user/hondapriustotyot",
+    "likes": 91
+}
