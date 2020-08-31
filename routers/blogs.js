@@ -6,13 +6,15 @@ const blog = require('../components/blog')
 const jwt = require('jsonwebtoken')
 const config = require('../components/config')
 
+
+
 blogsRouter.get('/', async (request, response) => {
-    const blogs = await Blog.find({}).populate('author', { username: 1, name: 1 })
+    const blogs = await Blog.find({}).populate('user', { username: 1, name: 1 })
     response.json(blogs)
 })
 
 blogsRouter.get('/:id', async (request, response) => {
-    const blog = await Blog.findById(request.params.id).populate('author', { username: 1, name: 1 })
+    const blog = await Blog.findById(request.params.id).populate('user', { username: 1, name: 1 })
     response.json(blog)
 })
 
@@ -27,7 +29,8 @@ blogsRouter.post('/', async (request, response, next) => {
     console.log(user)
     const blog = new Blog({
         title: body.title,
-        author: user._id,
+        user: user._id,
+        author: body.author,
         url: body.url,
         likes: body.likes
     })
@@ -48,20 +51,28 @@ blogsRouter.put('/:id', async (request, response, next) => {
     }
 
     const user = await User.findById(decodedToken.id)
-    const changedBlog = ({
+    const changedBlog = {
         title: body.title,
-        author: user._id,
+        user: user.id,
+        author: body.author,
         url: body.url,
-        likes: body.likes
-    })
-    const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, changedBlog, { new: true })
-    response.json(updatedBlog).status(200).end()
+        likes: body.likes,
+    }
+    
+    try{
+        const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, changedBlog, { new: true })
+        response.json(updatedBlog).status(200).end()
+    }catch(err){
+        response.status(500).json({error: err})
+    }
 })
 
 blogsRouter.delete('/:id', async (request, response, next) => {
     const id = request.params.id //id of specific blog deletion
 
     const decodedToken = jwt.verify(request.token, config.Secret)
+    logger.info(decodedToken)
+    
     if(!request.token || !decodedToken.id){
         return response.status(401).json({error: 'token missing or invalid'})
     }

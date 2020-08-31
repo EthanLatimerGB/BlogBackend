@@ -48,6 +48,7 @@ test('making a POST request that creates a new Blog', async () => {
 
     const newBlog = new Blog({
         title: 'My New Blog',
+        author: 'HAhahah noob lol',
         url: 'http://www.holymolyincorporated.com',
         likes: 91
     })
@@ -82,6 +83,7 @@ test('Deletes a single blog post resource', async () => {
 
     const newBlog = new Blog({
         title: 'My New Blog',
+        author: 'Fat man',
         url: 'http://www.holymolyincorporated.com',
         likes: 91
     })
@@ -109,6 +111,7 @@ test('Find a blog and update the information', async () => {
 
     const newBlog = new Blog({
         title: 'My New Blog',
+        author: 'fatman',
         url: 'http://www.holymolyincorporated.com',
         likes: 91
     })
@@ -126,6 +129,7 @@ test('Find a blog and update the information', async () => {
     
     const updatedBlog = {
         title: changingBlog.title,
+        user: changingBlog.user,
         author: changingBlog.author,
         url: 'http://www.sdlkafjhaklsfsd.com',
         likes: changingBlog.likes,

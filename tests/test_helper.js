@@ -3,19 +3,22 @@ const Blog = require('../components/blog')
 const initialBlogs = [
     {
         title: 'my dog bit me cog',
-        author: '5f31469bab2b8f1c365d078d',
+        user: '5f31469bab2b8f1c365d078d',
+        author: 'Deez Nuts man',
         url: 'LOL',
         likes: 2000000,
     },
     {
         title: 'Tyler Stud',
-        author: '5f31469bab2b8f1c365d078e',
+        author: 'Tyler lol',
+        user: '5f31469bab2b8f1c365d078e',
         url: 'LOL BRUH',
         likes: 32942874,
     },
     {
         title: 'The day me knob went green',
-        author: '5f31469bab2b8f1c365d078e',
+        author: 'Ethan',
+        user: '5f31469bab2b8f1c365d078e',
         url: 'http://steam.getgud.org or some shit',
         likes: 930474,
     }
