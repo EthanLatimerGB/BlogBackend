@@ -40,7 +40,7 @@ blogsRouter.post('/', async (request, response, next) => {
     user.blogs = user.blogs.concat(savedBlog._id)
     await user.save()
 
-    response.status(201).send({savedBlog})
+    response.status(201).send(savedBlog)
 })
 
 blogsRouter.put('/:id', async (request, response, next) => {
