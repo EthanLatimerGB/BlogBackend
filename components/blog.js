@@ -20,7 +20,8 @@ const blogSchema = new mongoose.Schema({
     likes: {
         type: String,
         required: true
-    }
+    },
+    comments: [{ type: String }]
 })
 
 blogSchema.set('toJSON', {

@@ -32,7 +32,8 @@ blogsRouter.post('/', async (request, response, next) => {
         user: user._id,
         author: body.author,
         url: body.url,
-        likes: body.likes
+        likes: body.likes,
+        comments: []
     })
     
     console.log(blog.toJSON())
@@ -57,13 +58,17 @@ blogsRouter.put('/:id', async (request, response, next) => {
         author: body.author,
         url: body.url,
         likes: body.likes,
+        comments: body.comments
     }
     
+    logger.info(changedBlog)
+
     try{
         const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, changedBlog, { new: true })
         response.json(updatedBlog).status(200).end()
     }catch(err){
         response.status(500).json({error: err})
+        logger.error(`Error: ${err}`)
     }
 })
 
